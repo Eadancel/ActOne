@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html  ng-app="zypper.actone">
+    <head>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+         <!-- wavesurfer.js -->
+        <script src="wave/wavesurfer.min.js"></script>
+
+    </head>
+<body>
+        <div ng-controller="TabsDemoCtrl">
+          <tabset>
+            
+            <tab ng-repeat="tab in tabs" active="tab.active" disable="tab.disabled">
+                <tab-heading>
+                    {{tab.title}} <a ng-click="removeTab($index)" href=''><i class="glyphicon glyphicon-remove"></i></a>
+                </tab-heading>
+              {{tab.content}}
+
+                  <div class="row" ng-repeat="sound in tab.sounds" style="margin: 30px 0">
+                    <div class="col-sm-8">
+                        <wavesurfer url="media/demoshjdf.wav" wave-color="#337ab7" progress-color="#23527c" height="64">
+                        </wavesurfer>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <button class="btn btn-success btn-block" ng-click="wavesurfer.playPause()">
+                            <span id="play" ng-show="paused">
+                                <i class="glyphicon glyphicon-play"></i>
+                                Play {{sound.title}}
+                            </span>
+
+                            <span id="pause" ng-show="!paused">
+                                <i class="glyphicon glyphicon-pause"></i>
+                                Pause  {{sound.title}}
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+               <!--   <div class="list-group" id="playlist">
+                    <a href=""
+                       ng-repeat="sound in tab.sounds"
+                       ng-class="'list-group-item'"
+                       ng-click="play('../media/{{sound.file}}')">
+                        <i class="glyphicon glyphicon-play"></i>
+                         
+                        <span class="badge">{{sound.effect}}</span>
+                    </a>
+                </div>  --> 
+
+            </tab>
+            <tab select="addTab()">
+              <tab-heading>
+                <i class="glyphicon glyphicon-plus"></i>
+              </tab-heading>
+              None
+            </tab>
+          </tabset>
+
+          
+
+        
+        </div>
+        
+        <script src="js/app.js"></script>
+        <script src="js/wave.js"></script>
+</body>
+</html>
